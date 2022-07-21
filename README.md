@@ -1,6 +1,6 @@
-# yii2-symfonymailer-issue-demo
+# yii2-symfonymailer-issue
 
-Example for [issue](https://github.com/yiisoft/yii2-symfonymailer/issues/35).
+Example for the [issue](https://github.com/yiisoft/yii2-symfonymailer/issues/35).
 
 # installation
 
