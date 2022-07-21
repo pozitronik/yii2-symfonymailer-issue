@@ -6,11 +6,11 @@ use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
 /**
- * Class MailerQueueSymphonyTest
+ * Class MailerQueueSwiftTest
  */
-class MailerQueueSymphonyTest extends Unit {
+class MailerQueueSwiftTest extends Unit {
 	/**
-	 * Проверка очереди с SymphonyMailer
+	 * Проверка очереди с SwiftMailer
 	 * @return void
 	 * @throws Exception
 	 * @throws InvalidConfigException
@@ -26,11 +26,11 @@ class MailerQueueSymphonyTest extends Unit {
 			'class' => YarCode\Yii2\QueueMailer\Mailer::class,
 			'queue' => 'queue_email',
 			'syncMailer' => [
-				'class' => yii\symfonymailer\Mailer::class,
+				'class' => yii\swiftmailer\Mailer::class,
 				'transport' => [
-					'scheme' => 'smtp',
+					'class' => Swift_SmtpTransport::class,
 					'host' => 'localhost',
-					'port' => 25
+					'port' => 25,
 				],
 			],
 		]);
@@ -43,10 +43,10 @@ class MailerQueueSymphonyTest extends Unit {
 		$this::assertTrue(Yii::$app->mailer->send($message));
 
 		/* not required for demo
-		 * (new YarCode\Yii2\QueueMailer\Jobs\SendMessageJob([
+		(new YarCode\Yii2\QueueMailer\Jobs\SendMessageJob([
 			'mailer' => Yii::$app->mailer,
 			'message' => $message
-		]))->execute(Yii::$app->queue_email);*/
-
+		]))->execute(Yii::$app->queue_email);
+		*/
 	}
 }
