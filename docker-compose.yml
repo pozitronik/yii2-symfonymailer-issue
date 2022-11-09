@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  php-8:
+    container_name: test_php
+    build: ./docker/
+    volumes:
+      - ${WEB_ROOT_PATH}:/var/www
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      YII_DEBUG: ${YII_DEBUG}
+      YII_ENV_DEV: ${YII_ENV_DEV}
+      YII_ENV: ${YII_ENV}
+      PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
+      XDEBUG_CONFIG: ${XDEBUG_CONFIG}
+    networks:
+      - backend
+
+# Networks Setup
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${DOCKER_SUBNET}
